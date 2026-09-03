@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UniCore — Smart University Resource Orchestration</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar__identity">
+      <span class="topbar__mark">UniCore</span>
+      <span class="topbar__subtitle">Resource Orchestration Console</span>
+    </div>
+    <div class="topbar__status">
+      <span id="statusPill" class="status-pill status-pill--safe">SAFE</span>
+      <span class="topbar__tagline">Smart University · OS Simulation</span>
+    </div>
+  </header>
+
+  <main class="console">
+
+    <!-- Resource pool gauges -->
+    <section class="panel panel--resources" aria-label="Campus resource pool">
+      <h2 class="panel__title">Resource pool</h2>
+      <div id="resourceList" class="resource-list"><!-- injected --></div>
+    </section>
+
+    <!-- Department ledger -->
+    <section class="panel panel--ledger" aria-label="Department allocation ledger">
+      <h2 class="panel__title">Department ledger</h2>
+      <div class="ledger-scroll">
+        <table class="ledger-table">
+          <thead>
+            <tr>
+              <th>Dept</th><th>Pri</th><th>Allocation</th><th>Max</th><th>Need</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="ledgerBody"><!-- injected --></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Action console -->
+    <section class="panel panel--console" aria-label="Orchestration console">
+      <h2 class="panel__title">Console</h2>
+
+      <form id="requestForm" class="console-form">
+        <p class="console-form__label">Request resources</p>
+        <select id="reqDept" class="field"></select>
+        <div id="reqVector" class="vector-grid"><!-- injected --></div>
+        <button type="submit" class="btn btn--primary">Submit request</button>
+      </form>
+
+      <form id="releaseForm" class="console-form">
+        <p class="console-form__label">Release resources</p>
+        <select id="relDept" class="field"></select>
+        <div id="relVector" class="vector-grid"><!-- injected --></div>
+        <button type="submit" class="btn btn--ghost">Release</button>
+      </form>
+
+      <div class="console-actions">
+        <button id="btnSchedule" class="btn btn--ghost">Run scheduler batch</button>
+        <button id="btnSafety" class="btn btn--ghost">Run safety check</button>
+        <button id="btnDeadlock" class="btn btn--ghost">Run deadlock sweep</button>
+        <button id="btnReset" class="btn btn--danger">Reset system</button>
+      </div>
+
+      <p id="consoleFeedback" class="console-feedback" role="status"></p>
+    </section>
+
+    <!-- Event log -->
+    <section class="panel panel--log" aria-label="Orchestration event log">
+      <h2 class="panel__title">Event log</h2>
+      <div id="logFeed" class="log-feed"><!-- injected --></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>Backend: <code id="apiBaseLabel">http://localhost:4000</code></span>
+    <span id="connState">connecting…</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
